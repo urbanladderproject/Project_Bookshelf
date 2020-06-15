@@ -1,53 +1,47 @@
 package testdata;
 
-import java.io.File;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import driversetup.DriverSetup;
+import libraryFunctions.Screenshots;
 import utils.ExcelUtils_Bookshelf_name_and_price;
 import utils.Excelutlis_Collections_List;
+import pageobjects.Bookshelf;
 import pageobjects.Display_Collections;
 import pageobjects.GiftCard;
-import pageobjects.ResultPage;
-import pageobjects.SearchPage;
+import reports.ExtentReport;
 
-public class TestValidData {
+public class TestValidData extends ExtentReport {
 
 	public static WebDriver driver;
 	public static String browser_type;
-	static String url = "https://www.urbanladder.com";
 	static String list_data[];
+	static String url = "https://www.urbanladder.com";
 
-	
-	ResultPage navigated_page;
-	SearchPage search;
+	Screenshots ss;	
+	Bookshelf bookshelf;
 	Display_Collections collections;
 	GiftCard giftcard;
 
-	@BeforeClass
+	@BeforeTest(alwaysRun = true)
 	@Parameters("browser")
 	public void setup(String browser) {
 
 		browser_type = browser;
 		driver = DriverSetup.getDriver(browser);
-
-		navigated_page = new ResultPage(driver);
-		search = new SearchPage(driver);
+		
+		bookshelf = new Bookshelf(driver);
 		collections = new Display_Collections(driver);
 		giftcard = new GiftCard(driver);
+		ss = new Screenshots(driver);
 		System.out.println("before class done");
 
 	}
@@ -73,24 +67,27 @@ public class TestValidData {
 		//String Search_type = dataProvider3;
 
 		//Search and display the name of first 3 bookshelves which ranges less than or equal to Rs.15000
+		
+		test = extent.createTest("testwebpage");
+		
 		System.out.println(search_product + " " + Search_price + " " + Search_type + " " + browser_type);
 
 		if((search_product.equalsIgnoreCase("Bookshelf")|| search_product.equalsIgnoreCase("Bookshelves")) && Search_price.equalsIgnoreCase("15000") && Search_type.equalsIgnoreCase("Open")) 
 		{
-
+			
 			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-			search.clearpage();	
+			bookshelf.clearpage();	
 
 			//Criterias to be searched
 
-			search.searchText(search_product);
+			bookshelf.searchText(search_product);
 
-			search.searchbutton();
+			bookshelf.searchbutton();
 
-			search.stockdetails();
+			bookshelf.stockdetails();
 
-			search.storage_type();
+			bookshelf.storage_type();
 			
 			//waits for 30 seconds to load the page
 			
@@ -98,38 +95,11 @@ public class TestValidData {
 
 			//prints the name and price of first three bookshelves displayed in the navigated page			
 			
-			navigated_page.getresult(browser_type);
+			bookshelf.getresult(browser_type);
 
 			//take screenshot of the navigated page         
-			File src= ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-			try
-			{
-				if(browser_type.equalsIgnoreCase("Chrome")) {
-					String savePath = System.getProperty("user.dir") + "\\Screenshot\\Chrome";
-					Date todayTime = new Date();
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH-mm-ss");
-					String strDate= formatter.format(todayTime);
-					FileUtils.copyFile(src, new File(savePath + strDate +".png"));
-					System.out.println("done");
-
-				}
-				else if(browser_type.equalsIgnoreCase("Firefox") || browser_type.equalsIgnoreCase("Mozilla")) {
-					String savePath = System.getProperty("user.dir") + "\\Screenshot\\Firefox";
-					Date todayTime = new Date();
-					SimpleDateFormat formatter = new SimpleDateFormat("yyyy/MM/dd HH-mm-ss");
-					String strDate= formatter.format(todayTime);
-					FileUtils.copyFile(src, new File(savePath + strDate +".png"));
-					System.out.println("done");				
-
-				}
-				driver.navigate().to(url);
-
-			}	 catch (IOException e) {
-
-				e.printStackTrace();
-
-			} 
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			
+			ss.take_Screenshots(browser_type);
 
 		}
 		else
@@ -159,9 +129,7 @@ public class TestValidData {
 		
 		
 		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-		
-		
-		
+				
 		
 		//Gift card form filling		
 		giftcard.enter_to_giftcard();
