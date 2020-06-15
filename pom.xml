@@ -51,6 +51,10 @@
 			<artifactId>poi</artifactId>
 			<version>4.1.2</version>
 		</dependency>
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.0.0</version>
 	</dependencies>
 
 </project>
