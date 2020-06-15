@@ -26,7 +26,6 @@ public class ExcelUtils_Bookshelf_name_and_price {
 		HSSFWorkbook wb = new HSSFWorkbook(file);
 		HSSFSheet sheet = wb.getSheet(sheetName);
 		int n = 13;
-		System.out.println(n);
 		for(int i = 1;i<n;i++) 
 		{
 			HSSFRow row = sheet.getRow(i);
