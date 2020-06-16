@@ -89,7 +89,7 @@ public class TestValidData extends ExtentReport {
 
 			bookshelf.stockdetails();
 
-			bookshelf.storage_type();
+			//bookshelf.storage_type();
 			
 			//waits for 30 seconds to load the page
 			
