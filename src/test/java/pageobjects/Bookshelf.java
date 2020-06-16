@@ -73,7 +73,7 @@ public class Bookshelf {
     	
     }
     
-    public void storage_type() {
+    public void storage_type() throws Exception {
     
     	System.out.println("Into storage type");
     	new Actions(driver).moveToElement(driver.findElement(storage_dropdown)).build().perform();
