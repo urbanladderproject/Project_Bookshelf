@@ -75,7 +75,9 @@ public class TestValidData extends ExtentReport {
 		if((search_product.equalsIgnoreCase("Bookshelf")|| search_product.equalsIgnoreCase("Bookshelves")) && Search_price.equalsIgnoreCase("15000") && Search_type.equalsIgnoreCase("Open")) 
 		{
 			
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+			//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+                         
+			Thread.sleep(3000);
 
 			bookshelf.clearpage();	
 
@@ -91,7 +93,9 @@ public class TestValidData extends ExtentReport {
 			
 			//waits for 30 seconds to load the page
 			
-			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
+			//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
+			
+			Thread.sleep(3000);
 
 			//prints the name and price of first three bookshelves displayed in the navigated page			
 			
@@ -128,7 +132,9 @@ public class TestValidData extends ExtentReport {
 		collections.displaydata(list_data);
 		
 		
-		driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		//driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+		
+		Thread.sleep(3000);
 				
 		
 		//Gift card form filling		
@@ -149,8 +155,9 @@ public class TestValidData extends ExtentReport {
 	@AfterClass
 	public void closeBrowser(){
 		//close the driver
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		//driver.close();
+		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+		Thread.sleep(3000);		
+		driver.close();
 	}
 
 
