@@ -78,7 +78,8 @@ public class Bookshelf {
     	System.out.println("Into storage type");
     	new Actions(driver).moveToElement(driver.findElement(storage_dropdown)).build().perform();
     	driver.findElement(storage).click();
-    	driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
+	Thread.sleep(3000);	    
+    	//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS); 
     	System.out.println("Storage type is open");
     	
     }
