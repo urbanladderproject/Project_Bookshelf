@@ -157,7 +157,7 @@ public class TestValidData extends ExtentReport {
 		//close the driver
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		Thread.sleep(3000);		
-		driver.close();
+		//driver.close();
 	}
 
 
