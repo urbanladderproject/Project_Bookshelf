@@ -153,7 +153,7 @@ public class TestValidData extends ExtentReport {
 
 
 	@AfterClass
-	public void closeBrowser(){
+	public void closeBrowser() throws InterruptedException{
 		//close the driver
 		//driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 		Thread.sleep(3000);		
