@@ -26,6 +26,8 @@ public class Bookshelf {
 	String pp_1 = "/html[1]/body[1]/div[1]/div[1]/div[2]/div[1]/div[3]/ul[1]/li[";
 	String pp_2 = "]/div[1]/div[5]/a[1]/div[2]/span[1]";
 	String pp_2_2 = "]/div[1]/div[3]/a[1]/div[2]/span[1]";
+	
+	int flag = 0;
 
 	
     public Bookshelf(WebDriver driver)
@@ -35,11 +37,12 @@ public class Bookshelf {
     
     public void clearpage() {
     	
-    	try{
+    	if(flag==0){
     		driver.findElement(clearpage).click();
     	   	System.out.println("Page cleared to search");
+		flag++;
     	}
-    	catch(Exception e)
+    	else
     	{
     		System.out.println("Page is already clear");
     	}
