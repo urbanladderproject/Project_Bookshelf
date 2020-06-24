@@ -57,12 +57,13 @@ public class ExcelUtils_Bookshelf_name_and_price {
 
 	public static void writeExcelData(String[][] results,String browser) throws Exception {
 
+		String path1;
 		System.out.println("Into write excel Data");
 		if(browser.equalsIgnoreCase("Chrome")) {
-			path = Chrome_result;
+			path1 = Chrome_result;
 		}
 		else if(browser.equalsIgnoreCase("Firefox") || browser.equalsIgnoreCase("Mozilla")) {
-			path = Firefox_result;
+			path1 = Firefox_result;
 		}
 
 		FileInputStream files = new FileInputStream(new File(path));
